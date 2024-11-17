@@ -5,14 +5,23 @@ use app\models\Livros;
 $livros = Livros::find()->all();
 ?>
 
-<div class="site-index">
+<div class="site-index container mt-5">
 
-    <h1>Livros Criados</h1>
+    <h1 class="mb-4">Livros Criados</h1>
 
-    <ul>
+    <div class="row">
         <?php foreach ($livros as $livro): ?>
-            <li><?= $livro->titulo ?> (Autor: <?= $livro->autor->nome ?>)</li>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="" class="card-img-top" alt="Imagem do Livro">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $livro->titulo ?></h5>
+                        <p class="card-text">Autor: <?= $livro->autor->nome ?></p>
+                        <a href="#" class="btn btn-primary">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
         <?php endforeach; ?>
-    </ul>
+    </div>
 
 </div>
