@@ -32,16 +32,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'titulo',
             'autor_id',
-            'descricao:ntext',
+            [
+                'attribute' => 'descricao',
+                'value' => function ($model) {
+                    return substr($model->descricao, 0, 10) . '...'; // Limita a descrição a 50 caracteres
+                },
+                'label' => 'Descrição',
+            ],
             'data_publicacao',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Livros $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
-
 
 </div>
