@@ -20,8 +20,9 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'identityClass' => 'app\models\User', // Classe do modelo que implementa IdentityInterface
+            'enableAutoLogin' => true,           // Permite login automático (cookies)
+            'loginUrl' => ['site/login'],        // URL de login
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

@@ -10,6 +10,8 @@ use Yii;
  * @property int $id
  * @property string $titulo
  * @property int|null $autor_id
+ * @property string|null $descricao
+ * @property string|null $data_publicacao
  *
  * @property Autores $autor
  */
@@ -31,6 +33,8 @@ class Livros extends \yii\db\ActiveRecord
         return [
             [['titulo'], 'required'],
             [['autor_id'], 'integer'],
+            [['descricao'], 'string'],
+            [['data_publicacao'], 'safe'],
             [['titulo'], 'string', 'max' => 255],
             [['autor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Autores::class, 'targetAttribute' => ['autor_id' => 'id']],
         ];
@@ -45,6 +49,8 @@ class Livros extends \yii\db\ActiveRecord
             'id' => 'ID',
             'titulo' => 'Titulo',
             'autor_id' => 'Autor ID',
+            'descricao' => 'Descricao',
+            'data_publicacao' => 'Data Publicacao',
         ];
     }
 

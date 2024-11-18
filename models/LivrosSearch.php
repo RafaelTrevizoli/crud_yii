@@ -18,7 +18,7 @@ class LivrosSearch extends Livros
     {
         return [
             [['id', 'autor_id'], 'integer'],
-            [['titulo'], 'safe'],
+            [['titulo', 'descricao', 'data_publicacao'], 'safe'],
         ];
     }
 
@@ -60,9 +60,11 @@ class LivrosSearch extends Livros
         $query->andFilterWhere([
             'id' => $this->id,
             'autor_id' => $this->autor_id,
+            'data_publicacao' => $this->data_publicacao,
         ]);
 
-        $query->andFilterWhere(['like', 'titulo', $this->titulo]);
+        $query->andFilterWhere(['like', 'titulo', $this->titulo])
+            ->andFilterWhere(['like', 'descricao', $this->descricao]);
 
         return $dataProvider;
     }
