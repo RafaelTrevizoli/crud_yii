@@ -1,233 +1,85 @@
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
-    <br>
-</p>
+🚀 Projeto Yii - CRUD
+Este é um projeto simples implementado utilizando o Yii Framework para realizar operações CRUD (Create, Read, Update, Delete) em um banco de dados. O projeto serve como exemplo básico de como estruturar uma aplicação web utilizando o Yii, com foco em operações de gerenciamento de dados.
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](https://www.yiiframework.com/) application best for
-rapidly creating small projects.
+📝 Requisitos
+Antes de começar, você precisará de:
 
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
+PHP (versão 7.4 ou superior) 🖥️
+Composer (para gerenciar dependências) 📦
+MySQL ou outro banco de dados compatível com Yii 🗄️
+Yii Framework instalado via Composer 🛠️
+⬇️ Instalação
+Siga os passos abaixo para configurar o projeto em sua máquina local.
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![build](https://github.com/yiisoft/yii2-app-basic/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-basic/actions?query=workflow%3Abuild)
+1. Clone o repositório
+bash
+Copiar código
+git clone https://github.com/seu-usuario/nome-do-repositorio.git
+cd nome-do-repositorio
+2. Instale as dependências do Composer
+Dentro da pasta do projeto, execute:
 
-DIRECTORY STRUCTURE
--------------------
+bash
+Copiar código
+composer install
+3. Configure o banco de dados
+Edite o arquivo de configuração do banco de dados em config/db.php para corresponder às configurações do seu banco de dados MySQL:
 
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
-
-
-
-REQUIREMENTS
-------------
-
-The minimum requirement by this project template that your Web server supports PHP 7.4.
-
-
-INSTALLATION
-------------
-
-### Install via Composer
-
-If you do not have [Composer](https://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](https://getcomposer.org/doc/00-intro.md#installation-nix).
-
-You can then install this project template using the following command:
-
-~~~
-composer create-project --prefer-dist yiisoft/yii2-app-basic basic
-~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
-~~~
-http://localhost/basic/web/
-~~~
-
-### Install from an Archive File
-
-Extract the archive file downloaded from [yiiframework.com](https://www.yiiframework.com/download/) to
-a directory named `basic` that is directly under the Web root.
-
-Set cookie validation key in `config/web.php` file to some random secret string:
-
-```php
-'request' => [
-    // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-    'cookieValidationKey' => '<secret random string goes here>',
-],
-```
-
-You can then access the application through the following URL:
-
-~~~
-http://localhost/basic/web/
-~~~
-
-
-### Install with Docker
-
-Update your vendor packages
-
-    docker-compose run --rm php composer update --prefer-dist
-    
-Run the installation triggers (creating cookie validation code)
-
-    docker-compose run --rm php composer install    
-    
-Start the container
-
-    docker-compose up -d
-    
-You can then access the application through the following URL:
-
-    http://127.0.0.1:8000
-
-**NOTES:** 
-- Minimum required Docker engine version `17.04` for development (see [Performance tuning for volume mounts](https://docs.docker.com/docker-for-mac/osxfs-caching/))
-- The default configuration uses a host-volume in your home directory `.docker-composer` for composer caches
-
-
-CONFIGURATION
--------------
-
-### Database
-
-Edit the file `config/db.php` with real data, for example:
-
-```php
+php
+Copiar código
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '1234',
+    'dsn' => 'mysql:host=localhost;dbname=nome_do_banco',
+    'username' => 'seu_usuario',
+    'password' => 'sua_senha',
     'charset' => 'utf8',
 ];
-```
+4. Crie as tabelas no banco de dados
+Execute o comando para criar as tabelas necessárias para o CRUD. Você pode criar manualmente ou utilizar migrations se preferir.
 
-**NOTES:**
-- Yii won't create the database for you, this has to be done manually before you can access it.
-- Check and edit the other files in the `config/` directory to customize your application as required.
-- Refer to the README in the `tests` directory for information specific to basic application tests.
+sql
+Copiar código
+CREATE TABLE nome_da_tabela (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+5. Configuração do ambiente
+Execute o servidor local para visualizar o projeto:
 
+bash
+Copiar código
+php yii serve
+O projeto estará disponível em http://localhost:8080 (ou a porta que aparecer no terminal).
 
-TESTING
--------
+🔧 Funcionalidades
+O projeto implementa as seguintes funcionalidades básicas de um CRUD:
 
-Tests are located in `tests` directory. They are developed with [Codeception PHP Testing Framework](https://codeception.com/).
-By default, there are 3 test suites:
+Criar: Formulário para adicionar novos registros ao banco de dados ➕
+Ler: Listagem de registros existentes no banco de dados 📜
+Atualizar: Formulário para editar registros existentes ✏️
+Deletar: Opção para excluir registros ❌
+Essas funcionalidades são implementadas em uma única tabela do banco de dados e são acessíveis a partir do painel principal da aplicação.
 
-- `unit`
-- `functional`
-- `acceptance`
+🗂️ Estrutura do Projeto
+O projeto é estruturado da seguinte maneira:
 
-Tests can be executed by running
+controllers/: Contém os controladores da aplicação, incluindo a lógica para processar as requisições CRUD 📁
+models/: Contém os modelos de dados que interagem com o banco de dados 💾
+views/: Contém as páginas HTML geradas para exibir as operações CRUD 🖼️
+config/: Contém as configurações da aplicação, incluindo configuração de banco de dados ⚙️
+🖥️ Como Usar
+Acesse a página inicial do projeto para ver a lista de registros 📋
+Utilize os botões para adicionar, editar ou excluir registros ➕✏️❌
+A interface é simples e foi projetada para facilitar o entendimento das operações CRUD básicas no Yii.
+🌐 Exemplo de URLs
+Listagem de registros: http://localhost:8080/
+Criar registro: http://localhost:8080/criar
+Editar registro: http://localhost:8080/editar?id={id}
+Excluir registro: http://localhost:8080/excluir?id={id}
+🤝 Contribuição
+Se você tiver sugestões de melhorias ou quiser contribuir com o projeto, fique à vontade para enviar um pull request. Caso tenha encontrado algum erro ou tenha dúvidas, abra uma issue.
 
-```
-vendor/bin/codecept run
-```
-
-The command above will execute unit and functional tests. Unit tests are testing the system components, while functional
-tests are for testing user interaction. Acceptance tests are disabled by default as they require additional setup since
-they perform testing in real browser. 
-
-
-### Running  acceptance tests
-
-To execute acceptance tests do the following:  
-
-1. Rename `tests/acceptance.suite.yml.example` to `tests/acceptance.suite.yml` to enable suite configuration
-
-2. Replace `codeception/base` package in `composer.json` with `codeception/codeception` to install full-featured
-   version of Codeception
-
-3. Update dependencies with Composer 
-
-    ```
-    composer update  
-    ```
-
-4. Download [Selenium Server](https://www.seleniumhq.org/download/) and launch it:
-
-    ```
-    java -jar ~/selenium-server-standalone-x.xx.x.jar
-    ```
-
-    In case of using Selenium Server 3.0 with Firefox browser since v48 or Google Chrome since v53 you must download [GeckoDriver](https://github.com/mozilla/geckodriver/releases) or [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) and launch Selenium with it:
-
-    ```
-    # for Firefox
-    java -jar -Dwebdriver.gecko.driver=~/geckodriver ~/selenium-server-standalone-3.xx.x.jar
-    
-    # for Google Chrome
-    java -jar -Dwebdriver.chrome.driver=~/chromedriver ~/selenium-server-standalone-3.xx.x.jar
-    ``` 
-    
-    As an alternative way you can use already configured Docker container with older versions of Selenium and Firefox:
-    
-    ```
-    docker run --net=host selenium/standalone-firefox:2.53.0
-    ```
-
-5. (Optional) Create `yii2basic_test` database and update it by applying migrations if you have them.
-
-   ```
-   tests/bin/yii migrate
-   ```
-
-   The database configuration can be found at `config/test_db.php`.
-
-
-6. Start web server:
-
-    ```
-    tests/bin/yii serve
-    ```
-
-7. Now you can run all available tests
-
-   ```
-   # run all available tests
-   vendor/bin/codecept run
-
-   # run acceptance tests
-   vendor/bin/codecept run acceptance
-
-   # run only unit and functional tests
-   vendor/bin/codecept run unit,functional
-   ```
-
-### Code coverage support
-
-By default, code coverage is disabled in `codeception.yml` configuration file, you should uncomment needed rows to be able
-to collect code coverage. You can run your tests and collect coverage with the following command:
-
-```
-#collect coverage for all tests
-vendor/bin/codecept run --coverage --coverage-html --coverage-xml
-
-#collect coverage only for unit tests
-vendor/bin/codecept run unit --coverage --coverage-html --coverage-xml
-
-#collect coverage for unit and functional tests
-vendor/bin/codecept run functional,unit --coverage --coverage-html --coverage-xml
-```
-
-You can see code coverage output under the `tests/_output` directory.
+📜 Licença
+Este projeto é licenciado sob a MIT License - veja o arquivo LICENSE para mais detalhes.
